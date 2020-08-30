@@ -10,10 +10,10 @@ require('dotenv').config()
 const transcript = require('./utils/transcript')
 
 let storage = null
-if (process.env.MONGO_URI) {
+if (process.env.MONGODB_URI) {
   const { MongoDbStorage } = require('botbuilder-storage-mongodb')
   storage = mongoStorage = new MongoDbStorage({
-    url : process.env.MONGO_URI,
+    url : process.env.MONGODB_URI,
   })
 } else if (process.env.REDIS_URL) {
   const redis = require('redis')
