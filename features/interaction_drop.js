@@ -12,7 +12,11 @@ module.exports = function(controller) {
   }
 
   controller.hears(['drop'], ['mention','direct_message','direct_mention'], async(bot, message) => {
-    // TODO: verify it's actually in the #mail-team channel & has a message.thread_ts
+    if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
+      // just ignore it
+      return
+    }
+
     const results = {}
     await Promise.all([
       react('add', message.channel, message.ts, 'beachball'),
