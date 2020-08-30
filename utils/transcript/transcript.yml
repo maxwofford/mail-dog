@@ -1,0 +1,73 @@
+bark:
+  - bark
+  - bärk
+  - bork
+  - arf
+  - yip
+  - yap
+  - woof
+  - wuf
+  - wuff
+  - björk
+  - börk
+  - wüf
+bark?: ${this.t('bark')}?
+barkBark!: ${bark = this.t('bark')} ${bark}!
+dog:
+  - hound
+  - big ${this.t('bark')}er
+  - little ${this.t('bark')}er
+  - doggone ${this.t('bark')}er
+  - dog
+  - doggo
+  - dingo
+  - doggy
+  - doggie
+  - pooch
+  - mutt
+errors:
+  generalFormat: |
+    :warning: *${this.t('barkBark!')}*
+    ${this.err.split('\n').map(i => i === '' ? '' : '_' + i + '_').join('\n')}
+  notFound:
+    - (the ${this.t('dog')}'s head tilts side to side)
+    - (the ${this.t('dog')} sort of paws at the ground like it's looking for something)
+    - (the ${this.t('dog')} sniffs around, but doesn't look like it found what it's looking for)
+    - (the ${this.t('dog')} tilts its head and looks puzzled)
+    - (the ${this.t('dog')} tilts its head and looks confused)
+    - ˢᵐᵒˡ ʰᵉᵃᵈ ᵗⁱˡᵗˢ
+  permissions:
+    - aw heck! you try'd ta bamboozle me?
+    - what typa kibble are you try'n ta feed me?
+    - go sniff around another tree.
+    - go sniff around another fire hydrant.
+    - you try'n ta get one past this ${this.t('dog')}?
+    - whadya think you're doin?
+  transcript:
+    - _the dog suddenly sits upright and pulls a messy pile of paw-written notes from it's pocket. you think it may have forgotten it's place in the script._
+settingsLink: |
+  *${this.t('barkBark!')}* _(Oh boy, master asked me for my settings link!)_
+  *${this.t('barkBark!')}* _(https://api.slack.com/apps/ARKJ7QHJ5)_
+missions:
+  noMissions: "You don't have any new missions!"
+slashCommandNotFound:
+  message: >
+    *${this.t('bark?')}* _I don't know that command. I'll go look around for it_
+  attribution: Animation credit Mudkip(https://mudkipful.tumblr.com)
+  imageUri: http://angel-trumpet.maxwofford.com/data/posts/869_9a1d500cb15754af.gif
+mailMission:
+  noSender: ${this.t('errors.permissions')} You aren't a node master!
+  senderCannotDispatch: ${this.t('errors.permissions')} You aren't permissioned to dispatch orders to node masters.
+  scenarioNotFound: >
+    ${this.t('errors.notFound')} I didn't find a scenario called "${this.taggedScenario}". Here's a list of the scenarios I've heard of:
+    ${this.scenarioList.map(s => `\n* \`${s}\``).join('')}
+  test: |
+    :heavy_check_mark: *${this.t('barkBark!')}* _this was run as a test, so I won't run this for real_
+  confirm: |
+    :white_check_mark: *${this.t('barkBark!')}* _yay! i have a job! I'll dispatch this to the node masters:_
+    scenario: ${this.taggedScenario}
+    recipient: ${this.recipientLookup}
+    memo: ${this.memo}
+  dispatch: |
+    <@UNRAW3K7F> ${this.sendOrTest} ${this.taggedScenario} ${this.recipientLookup} ${this.memo}
+    
