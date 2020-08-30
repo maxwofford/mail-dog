@@ -9,18 +9,18 @@ require('dotenv').config()
 
 const transcript = require('./utils/transcript')
 
-let storage = null
-if (process.env.MONGODB_URI) {
-  const { MongoDbStorage } = require('botbuilder-storage-mongodb')
-  storage = mongoStorage = new MongoDbStorage({
-    url : process.env.MONGODB_URI,
-  })
-} else if (process.env.REDIS_URL) {
-  const redis = require('redis')
-  const { RedisDbStorage } = require('botbuilder-storage-redis')
-  const redisClient = redis.createClient(process.env.REDIS_URL, { prefix: 'bot-storage:' })
-  storage = redisStorage = new RedisDbStorage(redisClient)
-}
+// let storage = null
+// if (process.env.MONGODB_URI) {
+//   const { MongoDbStorage } = require('botbuilder-storage-mongodb')
+//   storage = mongoStorage = new MongoDbStorage({
+//     url : process.env.MONGODB_URI,
+//   })
+// } else if (process.env.REDIS_URL) {
+//   const redis = require('redis')
+//   const { RedisDbStorage } = require('botbuilder-storage-redis')
+//   const redisClient = redis.createClient(process.env.REDIS_URL, { prefix: 'bot-storage:' })
+//   storage = redisStorage = new RedisDbStorage(redisClient, 0)
+// }
 
 const adapter = new SlackAdapter({
   // REMOVE THIS OPTION AFTER YOU HAVE CONFIGURED YOUR APP!
@@ -54,7 +54,7 @@ adapter.use(new SlackMessageTypeMiddleware())
 const controller = new Botkit({
   webhook_uri: '/api/messages',
   adapter: adapter,
-  storage
+  // storage
 })
 
 if (process.env.CMS_URI) {
@@ -116,7 +116,7 @@ controller.webserver.get('/install/auth', async (req, res) => {
     tokenCache[results.team_id] = results.bot.bot_access_token
 
     // Capture team to bot id
-    userCache[results.team_id] =  results.bot.bot_user_id
+    userCache[results.team_id] = results.bot.bot_user_id
 
     res.json('Success! Bot installed.')
   } catch (err) {
