@@ -93,9 +93,11 @@ controller.webserver.get('/', async(req, res) => {
     })
   res.send(`
     <h1>${transcript('barkBark!')}</h1>
-    This ${transcript('dog')} is running Botkit ${ controller.version }.
+    This ${transcript('dog')} is ${transcript('running')} on Botkit ${ controller.version }.
     <br />
-    <img src=${dogImg} />
+    <a href=${require('./package.json').repository.url}>Fetch the source</a>
+    <br />
+    <img src=${dogImg} style="max-width:50%;max-height:50%;" />
   `)
 })
 

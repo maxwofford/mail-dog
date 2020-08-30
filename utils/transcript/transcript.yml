@@ -19,12 +19,26 @@ dog:
   - little ${this.t('bark')}er
   - doggone ${this.t('bark')}er
   - dog
+  - pup
+  - puppy
+  - pupper
   - doggo
   - dingo
   - doggy
   - doggie
   - pooch
   - mutt
+  - four-legged friend
+  - cur
+running:
+  - running
+  - sprinting
+  - walking
+  - ambling
+  - pacing around
+  - pracing around
+  - trotting
+  - cantering
 errors:
   generalFormat: |
     :warning: *${this.t('barkBark!')}*
