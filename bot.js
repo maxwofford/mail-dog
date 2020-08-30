@@ -7,8 +7,6 @@ const { BotkitCMSHelper } = require('botkit-plugin-cms')
 
 const { SlackAdapter, SlackMessageTypeMiddleware, SlackEventMiddleware } = require('botbuilder-adapter-slack')
 
-const transcript = require('./utils/transcript')
-
 const adapter = new SlackAdapter({
   // REMOVE THIS OPTION AFTER YOU HAVE CONFIGURED YOUR APP!
   enable_incomplete: true,
@@ -31,6 +29,20 @@ const adapter = new SlackAdapter({
   getTokenForTeam: getTokenForTeam,
   getBotUserByTeam: getBotUserByTeam,
 })
+
+async function getTokenForTeam(teamId) {
+  if (tokenCache[teamId]) {
+    return tokenCache[teamId]
+  }
+  console.error('Team not found in tokenCache: ', teamId)
+}
+
+async function getBotUserByTeam(teamId) {
+  if (userCache[teamId]) {
+    return userCache[teamId]
+  }
+  console.error('Team not found in userCache: ', teamId)
+}
 
 // Use SlackEventMiddleware to emit events that match their original Slack event types.
 adapter.use(new SlackEventMiddleware())
@@ -69,71 +81,3 @@ controller.ready(() => {
     })
   }
 })
-
-controller.webserver.get('/', async(req, res) => {
-  let dogImg = ''
-  await fetch('https://dog.ceo/api/breeds/image/random')
-    .then(function(dogRes) {
-      return dogRes.json()
-    }).then(function(json) {
-      dogImg = json.message
-    })
-  res.send(`
-    <h1>${transcript('barkBark!')}</h1>
-    This ${transcript('dog')} is ${transcript('running')} on Botkit ${ controller.version }.
-    <br />
-    <a href=${require('./package.json').repository.url}>Fetch the source</a>
-    <br />
-    <img src=${dogImg} style="max-width:50%;max-height:50%;" />
-  `)
-})
-
-controller.webserver.get('/install', (req, res) => {
-  // getInstallLink points to slack's oauth endpoint and includes clientId and scopes
-  res.redirect(controller.adapter.getInstallLink())
-})
-
-controller.webserver.get('/install/auth', async (req, res) => {
-  try {
-    const results = await controller.adapter.validateOauthCode(req.query.code)
-
-    console.log('FULL OAUTH DETAILS', results)
-
-    // Store token by team in bot state.
-    tokenCache[results.team_id] = results.bot.bot_access_token
-
-    // Capture team to bot id
-    userCache[results.team_id] = results.bot.bot_user_id
-
-    res.json('Success! Bot installed.')
-  } catch (err) {
-    console.error('OAUTH ERROR:', err)
-    res.status(401)
-    res.send(err.message)
-  }
-})
-
-let tokenCache = {}
-let userCache = {}
-
-if (process.env.TOKENS) {
-  tokenCache = JSON.parse(process.env.TOKENS)
-} 
-
-if (process.env.USERS) {
-  userCache = JSON.parse(process.env.USERS)
-} 
-
-async function getTokenForTeam(teamId) {
-  if (tokenCache[teamId]) {
-    return tokenCache[teamId]
-  }
-  console.error('Team not found in tokenCache: ', teamId)
-}
-
-async function getBotUserByTeam(teamId) {
-  if (userCache[teamId]) {
-    return userCache[teamId]
-  }
-  console.error('Team not found in userCache: ', teamId)
-}
