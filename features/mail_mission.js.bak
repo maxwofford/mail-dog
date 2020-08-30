@@ -1,10 +1,8 @@
 const transcript = require('../utils/transcript')
-const { air }= require('../utils/hackclub')
+const { air } = require('../utils/hackclub')
 
 module.exports = function(controller) {
   controller.hears(['send', 'test'], 'direct_mention,direct_message', async(bot, message) => {
-    console.log('Someone wants to send something!')
-
     const { text, user } = message
 
     const [sendOrTest, taggedScenario, recipientLookup, ...memoArray] = text.split(' ')
