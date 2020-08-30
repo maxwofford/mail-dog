@@ -25,27 +25,3 @@ module.exports = function(controller) {
   })
 }
 
-let tokenCache = {}
-let userCache = {}
-
-if (process.env.TOKENS) {
-  tokenCache = JSON.parse(process.env.TOKENS)
-} 
-
-if (process.env.USERS) {
-  userCache = JSON.parse(process.env.USERS)
-} 
-
-async function getTokenForTeam(teamId) {
-  if (tokenCache[teamId]) {
-    return tokenCache[teamId]
-  }
-  console.error('Team not found in tokenCache: ', teamId)
-}
-
-async function getBotUserByTeam(teamId) {
-  if (userCache[teamId]) {
-    return userCache[teamId]
-  }
-  console.error('Team not found in userCache: ', teamId)
-}
