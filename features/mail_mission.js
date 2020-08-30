@@ -2,32 +2,6 @@ const transcript = require('../utils/transcript')
 const { air }= require('../utils/hackclub')
 
 module.exports = function(controller) {
-  // controller.on('slash_command', async(bot, message) => {
-  //   const { command, text: parameters, user } = message
-
-  //   await bot.replyPrivateDelayed(message, {
-  //     blocks: [
-  //       {
-  //         type: 'context',
-  //         elements: [
-  //           {
-  //             type: 'mrkdwn',
-  //             text: `${command} ${parameters}`
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   })
-
-  //   switch (command) {
-  //     case '/fetch-mail':
-  //       // TODO
-  //       return await fetchMail(bot, message)
-  //     default:
-  //       // TODO
-  //       return await slashCommandNotFound(bot, message)
-  //   }
-  // })
 
   controller.hears(['speak', 'say', 'talk'], 'mention,message,direct_message,direct_mention', async(bot, message) => {
     console.log('I heard master say something!')

@@ -1,0 +1,25 @@
+async function getMissionInfo({ts}) {
+  const options = {
+    maxRecords: 1,
+    filterByFormula: `{Mail Team Thread Timestamp}='${ts}'`
+  }
+  const endpoint = `https://api2.hackclub.com/v0.1/Operations/Mail Missions/?select=${JSON.stringify(options)}`
+}
+async function getSenderInfo({slackID}) {
+  const options = {
+    maxRecords: 1,
+    filterByFormula: `{Slack ID}='${slackID}'`
+  }
+  const endpoint = `https://api2.hackclub.com/v0.1/Operations/Mail Senders/?select=${JSON.stringify(options)}`
+}
+async function getRecipientInfo({id}) {
+  // id is either an email or slack ID
+  const options = {
+    maxRecords: 1,
+    filterByFormula: `OR({Email}='${id}',{Slack ID}='${id}'`
+  }
+  const endpoint = `https://api2.hackclub.com/v0.1/Operations/Mail Senders/?select=${JSON.stringify(options)}`
+}
+
+const interactionSend = (bot, message) => {
+}
