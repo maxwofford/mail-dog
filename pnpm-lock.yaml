@@ -6,9 +6,11 @@ dependencies:
   botkit: 4.10.0
   botkit-plugin-cms: 1.0.3
   dotenv: 7.0.0
+  fuse.js: 6.4.1
   js-yaml: 3.14.0
   lodash: 4.17.20
   map-values-deep: 1.0.2
+  node-fetch: 2.6.0
 devDependencies:
   nodemon: 2.0.4
 lockfileVersion: 5.1
@@ -1002,6 +1004,12 @@ packages:
       - darwin
     resolution:
       integrity: sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
+  /fuse.js/6.4.1:
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-+hAS7KYgLXontDh/vqffs7wIBw0ceb9Sx8ywZQhOsiQGcSO5zInGhttWOUYQYlvV/yYMJOacQ129Xs3mP3+oZQ==
   /get-stream/4.1.0:
     dependencies:
       pump: 3.0.0
@@ -2382,7 +2390,9 @@ specifiers:
   botkit: ^4.10.0
   botkit-plugin-cms: ^1.0.3
   dotenv: ^7.0.0
+  fuse.js: ^6.4.1
   js-yaml: ^3.14.0
   lodash: ^4.17.20
   map-values-deep: ^1.0.2
+  node-fetch: ^2.6.0
   nodemon: ^2.0.4

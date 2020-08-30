@@ -90,3 +90,17 @@ test:
   missingPermission: ${this.t('errors.permissions')} you don't have test permissions!
   invalidScenario: ${this.t('errors.notFound')}. i don't know how to send \`${this.scenarioName}\`
   recommendedScenarios: Did you mean one of these? ${this.sorted.join(' | ')}
+drop:
+  noSender: ${this.t('errors.permissions')} you aren't a node master!
+  missingPermission: ${this.t('errors.permissions')} you don't have drop permissions!
+  missionNotFound: ${this.t('errors.notFound')} i don't see this mission in the database
+  alreadyDropped: this mission was already dropped!
+  success:
+    - https://cloud-7q98jyc25.vercel.app/3156379274117553.gif
+    - https://cloud-7q98jyc25.vercel.app/hazel-the-dog-drops-ball.gif
+    - https://cloud-7q98jyc25.vercel.app/tenor-3.gif
+    - https://cloud-7q98jyc25.vercel.app/tenor-4.gif
+    - https://cloud-7q98jyc25.vercel.app/tenor.gif
+    - https://cloud-7q98jyc25.vercel.app/wpqnflb.gif
+misc:
+  - https://cloud-7q98jyc25.vercel.app/ezgif.com-crop.gif
