@@ -13,7 +13,7 @@ module.exports = function(controller) {
       <h1>${transcript('barkBark!')}</h1>
       This ${transcript('dog')} is ${transcript('running')} on Botkit ${ controller.version }.
       <br />
-      <a href=${require('./package.json').repository.url}>Fetch the source</a>
+      <a href=${require('../package.json').repository.url}>Fetch the source</a>
       <br />
       <img src=${dogImg} style="max-width:50%;max-height:50%;" />
     `)
