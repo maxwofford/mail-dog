@@ -12,7 +12,7 @@ bark:
   - börk
   - wüf
 bark?: ${this.t('bark')}?
-barkBark!: ${bark = this.t('bark')} ${bark}!
+barkBark!: ${bark = this.t('bark')} ${bark} ${bark} ${bark}!
 dog:
   - hound
   - big ${this.t('bark')}er
