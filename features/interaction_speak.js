@@ -16,7 +16,7 @@ await bot.updateMessage({
      ...sent
 })
   }
-  controller.hears([' speak ', ' say ', ' talk ', ' walk ', ' food ', ' treat '], ['mention','message','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(/(?:\W|^)(?:speak|say|talk|walk|food|treat)/, ['mention','message','direct_message','direct_mention'], async(bot, message) => {
     console.log('I heard master say something!')
     // await bot.reply(message, transcript('barkBark!'))
 
