@@ -70,7 +70,7 @@ module.exports = function(controller) {
         react('add', message.channel, message.ts, 'warning'),
       ])
       const Fuse = require('fuse.js')
-      const fuse = new Fuse(results.scenarios, {threshold:0.2})
+      const fuse = new Fuse(results.scenarios)
       const sorted = fuse.search(scenarioName).map(s => s.item)
 
       if (sorted.length > 0) {
