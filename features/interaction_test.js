@@ -1,5 +1,5 @@
 const transcript = require('../utils/transcript')
-const { airFind, airGet } = require('../utils/helpers')
+const { airFind, airGet, airCreate } = require('../utils/helpers')
 
 module.exports = function(controller) {
   async function react(addOrRemove, channel, timestamp, reaction) {
@@ -30,7 +30,20 @@ module.exports = function(controller) {
       airFind('Mail Scenarios', 'ID', scenarioName).then(
         scenario => (results.scenario = scenario)
       ),
-      airFind('People', 'Slack ID', recipientID).then(
+      airFind('People', 'Slack ID', recipientID).then(async recipient => {
+        if (recipient) {
+          return recipient
+        } else {
+          const ORPHEUS_CHANNEL = 'GP36BNYV8'
+          const ORPHEUS_ID = 'UM1L1C38X'
+          console.log("Asking Orpheus to find or create this person because I can't find them in the db")
+          await Promise.all([
+            await bot.say({channel: ORPHEUS_CHANNEL, text: `<@${ORPHEUS_ID}> find or create ${recipientID}` }),
+            new Promise(resolve => setTimeout(resolve, 5000))
+          ])
+          return await airFind('People', 'Slack ID', recipientID)
+        }
+      }).then(
         recipient => (results.recipient = recipient)
       ),
     ])
