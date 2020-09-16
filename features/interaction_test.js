@@ -18,7 +18,7 @@ module.exports = function(controller) {
       try {
         let bot = await controller.spawn({token: process.env.BOT_TOKEN})
         const result = await (await bot.api.reactions[addOrRemove]({timestamp, channel, name: reaction})).json()
-        return result?.bot?.user_id || id
+        return result.bot.user_id || id
       } catch(e) {
         console.error(e)
         return id
