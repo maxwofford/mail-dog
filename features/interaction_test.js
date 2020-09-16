@@ -34,7 +34,7 @@ module.exports = function(controller) {
       const scenarioName = cleanText.split(' ')[1]
       const recipientID = cleanText.split(' ')[2].match(/[A-Z0-9]+/g)[0]
       const note = cleanText.split(' ').slice(3).join(' ')
-      const user = toUserId(message.user)
+      const user = await toUserId(message.user)
       console.log(user, verb, scenarioName, recipientID, note)
 
       const results = {}
