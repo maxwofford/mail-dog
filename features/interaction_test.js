@@ -90,7 +90,11 @@ module.exports = function(controller) {
         const sorted = fuse.search(scenarioName).map(s => s.item)
 
         if (sorted.length > 0) {
-          await bot.replyInThread(message, transcript('test.recommendedScenarios', {sorted}))
+          try {
+            await bot.replyInThread(message, transcript('test.recommendedScenarios', {sorted}))
+          } catch (err) {
+            console.log(err)
+          }
         }
         return
       }
