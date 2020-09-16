@@ -12,7 +12,7 @@ module.exports = function(controller) {
   }
 
   // @maildog test sticker_envelope @orpheus reward for being such a good dino
-  controller.hears(['test', 'send'], ['mention','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(['test', 'send'], ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
     try {
       const cleanText = message.text.replace(/ +/g, " ").trim()
       const verb = cleanText.split(' ')[0]
