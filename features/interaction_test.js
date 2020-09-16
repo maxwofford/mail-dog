@@ -17,7 +17,7 @@ module.exports = function(controller) {
     } else {
       try {
         let bot = await controller.spawn({token: process.env.BOT_TOKEN})
-        const result = await (await bot.api.bots.info({bot: id})).json()
+        const result = await bot.api.bots.info({bot: id})
         return result.bot.user_id || id
       } catch(e) {
         console.error(e)
