@@ -10,13 +10,13 @@ module.exports = function(controller) {
     // await bot.updateMessage({text, ...sent})
     let sent = await bot.reply(message,'this is my original reply...');
 
-// update the sent message using the sent.id field
-await bot.updateMessage({
-     text: 'this is an update!',
-     ...sent
-})
+    // update the sent message using the sent.id field
+    await bot.updateMessage({
+        text: 'this is an update!',
+        ...sent
+    })
   }
-  controller.hears(/(?:\W|^)(?:speak|say|talk|walk|food|treat)/, ['mention','message','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(/(?:\W|^)(?:speak|say|talk|walk|food|treat)/, ['mention','direct_message','direct_mention'], async(bot, message) => {
     console.log('I heard master say something!')
     // await bot.reply(message, transcript('barkBark!'))
 
