@@ -22,6 +22,7 @@ module.exports = function(controller) {
       console.log(verb, scenarioName, recipientID, note)
 
       const results = {}
+      console.log('user',message.user)
       await Promise.all([
         react('add', message.channel, message.ts, 'beachball'),
         airFind('Mail Senders', 'Slack ID', message.user).then(
