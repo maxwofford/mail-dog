@@ -11,6 +11,21 @@ module.exports = function(controller) {
     }
   }
 
+  async function toUserId(id) {
+    if (id[0] == 'U') {
+      return id
+    } else {
+      try {
+        let bot = await controller.spawn({token: process.env.BOT_TOKEN})
+        const result = await (await bot.api.reactions[addOrRemove]({timestamp, channel, name: reaction})).json()
+        return result?.bot?.user_id || id
+      } catch(e) {
+        console.error(e)
+        return id
+      }
+    }
+  }
+
   // @maildog test sticker_envelope @orpheus reward for being such a good dino
   controller.hears(['test', 'send'], ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
     try {
@@ -19,13 +34,13 @@ module.exports = function(controller) {
       const scenarioName = cleanText.split(' ')[1]
       const recipientID = cleanText.split(' ')[2].match(/[A-Z0-9]+/g)[0]
       const note = cleanText.split(' ').slice(3).join(' ')
-      console.log(verb, scenarioName, recipientID, note)
+      const user = toUserId(message.user)
+      console.log(user, verb, scenarioName, recipientID, note)
 
       const results = {}
-      console.log('user',message.user)
       await Promise.all([
         react('add', message.channel, message.ts, 'beachball'),
-        airFind('Mail Senders', 'Slack ID', message.user).then(
+        airFind('Mail Senders', 'Slack ID', user).then(
           sender => (results.sender = sender)
         ),
         airFind('Mail Scenarios', 'ID', scenarioName).then(
@@ -104,6 +119,12 @@ module.exports = function(controller) {
       }
     } catch (err) {
       bot.replyInThread(message, transcript('errors.generalFormat', {err}))
+
+      // this is just cleaning up the message history & is OK if it's not properly handled
+      await Promise.all([
+        react('remove', message.channel, message.ts, 'beachball'),
+        react('add', message.channel, message.ts, 'warning'),
+      ]).catch(e => console.error(e))
     }
   })
 }
