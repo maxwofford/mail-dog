@@ -57,6 +57,7 @@ errors:
     - go sniff around another fire hydrant.
     - you try'n ta get one past this ${this.t('dog')}?
     - whadya think you're doin?
+    - well give me a chewtoy an' tell me it's rawhide.
   transcript:
     - _the dog suddenly sits upright and pulls a messy pile of paw-written notes from it's pocket. you think it may have forgotten it's place in the script._
 settingsLink: |
