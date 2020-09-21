@@ -69,7 +69,7 @@ module.exports = function(controller) {
       })
 
       await Promise.all([
-        bot.replyInThread(message, transcript('request.success', {recipient: results.mission.fields['Receiver Public Slack Message Tag']})),
+        // bot.replyInThread(message, transcript('request.success', {recipient: results.mission.fields['Receiver Public Slack Message Tag']})),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'white_check_mark'),
       ])
