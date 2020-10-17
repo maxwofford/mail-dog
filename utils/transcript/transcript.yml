@@ -75,6 +75,8 @@ slashCommandNotFound:
 test:
   invalidScenario: ${this.t('errors.notFound')}. i don't know how to send \`${this.scenarioName}\`
   recommendedScenarios: Did you mean one of these? ${this.sorted.join(' | ')}
+unaccept:
+  dropped: this mission was already dropped!
 accept:
   currentSender: this mission was already accepted by <@${this.currentSender}>!
   dropped: this mission was already dropped!
