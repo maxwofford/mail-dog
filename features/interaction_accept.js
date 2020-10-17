@@ -12,7 +12,6 @@ module.exports = function(controller) {
   }
 
   controller.hears(/^accept/, ['direct_mention','bot_message'], async(bot, message) => {
-    console.log(JSON.stringify(message, null, '-'))
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return
