@@ -17,9 +17,11 @@ module.exports = function(controller) {
       // just ignore it
       return
     }
-    // if (message.type == 'bot_message') {
-    //   message.user = message.bot.id
-    // }
+    if (message.type == 'bot_message') {
+      // message.user = message['incoming_message']['channelData']
+      console.log("THIS IS IT")
+      console.log(message['incoming_message']['channelData'])
+    }
 
     const results = {}
 
