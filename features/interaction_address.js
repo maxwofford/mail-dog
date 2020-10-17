@@ -31,7 +31,7 @@ module.exports = function(controller) {
 
       if (!results.sender) {
         await Promise.all([
-          bot.replyInThread(message, transcript('address.noSender')),
+          bot.replyInThread(message, transcript('errors.notNodeMaster')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -40,7 +40,7 @@ module.exports = function(controller) {
 
       if (!results.mission) {
         await Promise.all([
-          bot.replyInThread(message, transcript('address.missionNotFound')),
+          bot.replyInThread(message, transcript('errors.missionNotFound')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -55,7 +55,7 @@ module.exports = function(controller) {
 
       if (results.sender.fields['Permissions'].indexOf('Address') == -1) {
         await Promise.all([
-          bot.replyInThread(message, transcript('address.missingPermission')),
+          bot.replyInThread(message, transcript('errors.missingPermission')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -65,7 +65,7 @@ module.exports = function(controller) {
       const updateLink = results.address.fields['Sender Update Form URL']
       const senderID = message.user
       await Promise.all([
-        bot.replyInThread(message, transcript('address.postUpdateLink', { updateLink, senderID })),
+        bot.replyInThread(message, transcript('addressUpdateLink', { updateLink, senderID })),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'white_check_mark'),
       ])
