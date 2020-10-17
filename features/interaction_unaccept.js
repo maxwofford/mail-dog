@@ -67,7 +67,10 @@ module.exports = function(controller) {
     }
 
     await Promise.all([
-      airPatch('Mail Missions', results.mission.id, { 'Sender': [] }),
+      airPatch('Mail Missions', results.mission.id, {
+        'Sender': [],
+        'Assignment Time': null,
+      }),
       react('remove', message.channel, message.ts, 'beachball'),
       react('add', message.channel, message.ts, 'white_check_mark'),
     ])

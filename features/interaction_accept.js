@@ -87,7 +87,10 @@ module.exports = function(controller) {
     }
 
     await Promise.all([
-      airPatch('Mail Missions', results.mission.id, {'Sender': [results.sender.id]}),
+      airPatch('Mail Missions', results.mission.id, {
+        'Sender': [results.sender.id],
+        'Assignment Time': Date.now(),
+      }),
       // bot.replyInThread(message, transcript('accept.success')),
       react('remove', message.channel, message.ts, 'beachball'),
       react('add', message.channel, message.ts, 'white_check_mark'),
