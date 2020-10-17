@@ -72,21 +72,6 @@ slashCommandNotFound:
     *${this.t('bark?')}* _I don't know that command. I'll go look around for it_
   attribution: Animation credit Mudkip(https://mudkipful.tumblr.com)
   imageUri: http://angel-trumpet.maxwofford.com/data/posts/869_9a1d500cb15754af.gif
-mailMission:
-  noSender: ${this.t('errors.permissions')} You aren't a node master!
-  senderCannotDispatch: ${this.t('errors.permissions')} You aren't permissioned to dispatch orders to node masters.
-  scenarioNotFound: >
-    ${this.t('errors.notFound')} I didn't find a scenario called "${this.taggedScenario}". Here's a list of the scenarios I've heard of:
-    ${this.scenarioList.map(s => `\n* \`${s}\``).join('')}
-  test: |
-    :heavy_check_mark: *${this.t('barkBark!')}* _this was run as a test, so I won't run this for real_
-  confirm: |
-    :white_check_mark: *${this.t('barkBark!')}* _yay! i have a job! I'll dispatch this to the node masters:_
-    scenario: ${this.taggedScenario}
-    recipient: ${this.recipientLookup}
-    memo: ${this.memo}
-  dispatch: |
-    <@UNRAW3K7F> ${this.sendOrTest} ${this.taggedScenario} ${this.recipientLookup} ${this.memo}
 request:
   noSender: ${this.t('errors.permissions')} you aren't a node master!
   missingPermission: ${this.t('errors.permissions')} you don't have address edit permissions!
