@@ -102,6 +102,11 @@ accept:
   dropped: this mission was already dropped!
   success: succeeded
   alreadyOwner: you're already sending this mission silly
+address:
+  missingPermission: ${this.t('errors.permissions')} you don't have address updating permissions!
+  noSender: ${this.t('errors.permissions')} you aren't a node master!
+  missionNotFound: ${this.t('errors.notFound')} i don't see this mission in the database
+  postUpdateLink: <@${this.senderID}> <${this.updateLink}|Use this link to update their address>
 drop:
   noSender: ${this.t('errors.permissions')} you aren't a node master!
   missingPermission: ${this.t('errors.permissions')} you don't have drop permissions!
