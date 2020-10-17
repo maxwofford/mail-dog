@@ -11,7 +11,7 @@ module.exports = function(controller) {
     }
   }
 
-  controller.hears(['request'], ['mention'], async (bot, message) => {
+  controller.hears(['address'], ['mention'], async (bot, message) => {
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return
