@@ -11,7 +11,7 @@ module.exports = function(controller) {
     }
   }
 
-  controller.hears(['unaccept'], ['direct_mention', 'bot_message'], async(bot, message) => {
+  controller.hears(/unaccept/, ['direct_mention', 'bot_message'], async(bot, message) => {
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return

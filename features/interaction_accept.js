@@ -11,7 +11,7 @@ module.exports = function(controller) {
     }
   }
 
-  controller.hears(['accept'], ['direct_mention','bot_message'], async(bot, message) => {
+  controller.hears(/^accept/, ['direct_mention','bot_message'], async(bot, message) => {
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return
@@ -28,7 +28,6 @@ module.exports = function(controller) {
         mission => (results.mission = mission)
       ),
     ])
-
 
     if (!results.sender) {
       await Promise.all([
