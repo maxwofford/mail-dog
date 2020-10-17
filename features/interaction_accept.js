@@ -11,7 +11,7 @@ module.exports = function(controller) {
     }
   }
 
-  controller.hears(['accept'], ['mention','message','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(['accept'], ['direct_mention','bot_message'], async(bot, message) => {
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return
@@ -21,18 +21,18 @@ module.exports = function(controller) {
 
     await Promise.all([
       react('add', message.channel, message.ts, 'beachball'),
-      airFind('Mail Missions', 'Mail Team Thread Timestamp', message.thread_ts).then(mission => (
-        results.mission = mission
-      )),
       airFind('Mail Senders', 'Slack ID', message.user).then(
         sender => (results.sender = sender)
+      ),
+      airFind('Mail Missions', 'Mail Team Thread Timestamp', message.thread_ts).then(
+        mission => (results.mission = mission)
       ),
     ])
 
 
     if (!results.sender) {
       await Promise.all([
-        bot.replyInThread(message, transcript('accept.noSender')),
+        bot.replyInThread(message, transcript('errors.notNodeMaster')),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'warning'),
       ])
@@ -41,7 +41,7 @@ module.exports = function(controller) {
 
     if (!results.mission) {
       await Promise.all([
-        bot.replyInThread(message, transcript('accept.missionNotFound')),
+        bot.replyInThread(message, transcript('errors.missionNotFound')),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'warning'),
       ])
@@ -50,7 +50,7 @@ module.exports = function(controller) {
 
     if (results.sender.fields['Permissions'].indexOf('Ship') == -1) {
       await Promise.all([
-        bot.replyInThread(message, transcript('accept.missingPermission')),
+        bot.replyInThread(message, transcript('errors.missingPermission')),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'warning'),
       ])
@@ -86,7 +86,7 @@ module.exports = function(controller) {
 
     await Promise.all([
       airPatch('Mail Missions', results.mission.id, {'Sender': [results.sender.id]}),
-      bot.replyInThread(message, transcript('accept.success')),
+      // bot.replyInThread(message, transcript('accept.success')),
       react('remove', message.channel, message.ts, 'beachball'),
       react('add', message.channel, message.ts, 'white_check_mark'),
     ])
