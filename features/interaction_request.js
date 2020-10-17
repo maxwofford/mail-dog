@@ -1,5 +1,5 @@
 const transcript = require('../utils/transcript')
-const { airFind, airPatch } = require('../utils/helpers')
+const { airFind } = require('../utils/helpers')
 
 module.exports = function(controller) {
   async function react(addOrRemove, channel, timestamp, reaction) {
@@ -31,7 +31,7 @@ module.exports = function(controller) {
 
       if (!results.sender) {
         await Promise.all([
-          bot.replyInThread(message, transcript('request.noSender')),
+          bot.replyInThread(message, transcript('errors.notNodeMaster')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -40,7 +40,7 @@ module.exports = function(controller) {
 
       if (!results.mission) {
         await Promise.all([
-          bot.replyInThread(message, transcript('request.missionNotFound')),
+          bot.replyInThread(message, transcript('errors.missionNotFound')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -50,7 +50,7 @@ module.exports = function(controller) {
 
       if (results.sender.fields['Permissions'].indexOf('Address') == -1) {
         await Promise.all([
-          bot.replyInThread(message, transcript('request.missingPermission')),
+          bot.replyInThread(message, transcript('errors.missingPermission')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -69,7 +69,6 @@ module.exports = function(controller) {
       })
 
       await Promise.all([
-        // bot.replyInThread(message, transcript('request.success', {recipient: results.mission.fields['Receiver Public Slack Message Tag']})),
         react('remove', message.channel, message.ts, 'beachball'),
         react('add', message.channel, message.ts, 'white_check_mark'),
       ])
