@@ -31,7 +31,7 @@ module.exports = function(controller) {
 
       if (!results.sender) {
         await Promise.all([
-          bot.replyInThread(message, transcript('drop.noSender')),
+          bot.replyInThread(message, transcript('errors.notNodeMaster')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -40,7 +40,7 @@ module.exports = function(controller) {
 
       if (!results.mission) {
         await Promise.all([
-          bot.replyInThread(message, transcript('drop.missionNotFound')),
+          bot.replyInThread(message, transcript('errors.missionNotFound')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -49,7 +49,7 @@ module.exports = function(controller) {
 
       if (results.sender.fields['Permissions'].indexOf('Drop') == -1) {
         await Promise.all([
-          bot.replyInThread(message, transcript('drop.missingPermission')),
+          bot.replyInThread(message, transcript('errors.missingPermission')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
