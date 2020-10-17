@@ -18,9 +18,7 @@ module.exports = function(controller) {
       return
     }
     if (message.type == 'bot_message') {
-      // message.user = message['incoming_message']['channelData']
-      console.log("THIS IS IT")
-      console.log(message['incoming_message']['channelData'])
+      message.user = message['incoming_message']['channelData']['user']
     }
 
     const results = {}
