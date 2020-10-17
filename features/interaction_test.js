@@ -1,5 +1,5 @@
 const transcript = require('../utils/transcript')
-const { airFind, airGet, airCreate } = require('../utils/helpers')
+const { airFind, airGet } = require('../utils/helpers')
 
 module.exports = function(controller) {
   async function react(addOrRemove, channel, timestamp, reaction) {
@@ -65,11 +65,11 @@ module.exports = function(controller) {
       ])
 
       if (!results.sender) {
-        bot.replyInThread(message, transcript('test.noSender'))
+        bot.replyInThread(message, transcript('errors.notNodeMaster'))
         return
       }
       if (results.sender.fields['Permissions'].indexOf('Test') == -1) {
-        bot.replyInThread(message, transcript('test.missingPermission'))
+        bot.replyInThread(message, transcript('erros.missingPermission'))
         return
       }
       if (!results.scenario) {

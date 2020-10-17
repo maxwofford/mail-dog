@@ -78,8 +78,6 @@ request:
   missionNotFound: ${this.t('errors.notFound')} i don't see this mission in the database
   success: I've sent an update request to <@${this.recipient}>
 test:
-  noSender: ${this.t('errors.permissions')} you aren't a node master!
-  missingPermission: ${this.t('errors.permissions')} you don't have test permissions!
   invalidScenario: ${this.t('errors.notFound')}. i don't know how to send \`${this.scenarioName}\`
   recommendedScenarios: Did you mean one of these? ${this.sorted.join(' | ')}
 accept:
