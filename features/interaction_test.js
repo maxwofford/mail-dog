@@ -107,7 +107,7 @@ module.exports = function(controller) {
           test: verb == 'test',
           scenarioRecordID: results.scenario.id,
           receiverAddressRecordID: results.recipient.fields['Address'][0],
-          missionNotes: note + ' mission created through maildog'
+          missionNotes: note + ' 🐕'
         })
       })
       if (response.statusText == 'OK') {
