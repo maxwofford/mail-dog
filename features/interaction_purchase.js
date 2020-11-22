@@ -1,5 +1,5 @@
 const transcript = require('../utils/transcript')
-const { airFind } = require('../utils/helpers')
+const { airFind, airPatch } = require('../utils/helpers')
 
 /* This is kinda weird. Postmaster has a huge complex flow for purchasing that I
  really don't want to interfere with. For now, I'm going to build @maildog
