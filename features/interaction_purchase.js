@@ -17,10 +17,13 @@ module.exports = function(controller) {
     }
   }
 
-  controller.hears(['purchase'], ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(/^purchase/, ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
     if (message.channel != 'GNTFDNEF8' || !message.thread_ts) {
       // just ignore it
       return
+    }
+    if (message.type == 'bot_message') {
+      message.user = message['incoming_message']['channelData']['user']
     }
 
     try {
