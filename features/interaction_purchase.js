@@ -53,7 +53,7 @@ module.exports = function(controller) {
         return
       }
 
-      if (results.sender.fields['Permissions'].indexOf('Purchase') == -1) {
+      if (results.sender.fields['Permissions'].indexOf('Send') == -1) {
         await Promise.all([
           bot.replyInThread(message, transcript('errors.missingPermission')),
           react('remove', message.channel, message.ts, 'beachball'),
