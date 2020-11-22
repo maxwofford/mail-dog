@@ -37,7 +37,7 @@ module.exports = function(controller) {
 
       if (!results.sender) {
         await Promise.all([
-          bot.replyInThread(message, transcript('purchase.noSender')),
+          bot.replyInThread(message, transcript('errors.notNodeMaster')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -46,7 +46,7 @@ module.exports = function(controller) {
 
       if (!results.mission) {
         await Promise.all([
-          bot.replyInThread(message, transcript('purchase.missionNotFound')),
+          bot.replyInThread(message, transcript('errors.missionNotFound')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -55,7 +55,7 @@ module.exports = function(controller) {
 
       if (results.sender.fields['Permissions'].indexOf('Purchase') == -1) {
         await Promise.all([
-          bot.replyInThread(message, transcript('purchase.missingPermission')),
+          bot.replyInThread(message, transcript('errors.missingPermission')),
           react('remove', message.channel, message.ts, 'beachball'),
           react('add', message.channel, message.ts, 'warning'),
         ])
@@ -69,7 +69,7 @@ module.exports = function(controller) {
         })
       }
 
-      await bot.replyInThread(message, ('<@UNRAW3K7F> purchase'))
+      await bot.replyInThread(message, '<@UNRAW3K7F> purchase')
       // hit the endpoint for purchasing addresses
       // const fetch = require('node-fetch')
       // const response = await fetch('https://mail-dog.hackclub.com/api/purchase', {
