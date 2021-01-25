@@ -1,3 +1,5 @@
+const { airFind } = require("../utils/helpers")
+
 module.exports = function(controller) {
   async function react(addOrRemove, channel, timestamp, reaction) {
     try {
