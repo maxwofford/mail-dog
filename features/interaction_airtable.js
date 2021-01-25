@@ -1,4 +1,5 @@
 const { airFind } = require("../utils/helpers")
+const transcript = require("../utils/transcript")
 
 module.exports = function(controller) {
   async function react(addOrRemove, channel, timestamp, reaction) {
