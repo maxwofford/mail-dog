@@ -11,6 +11,9 @@ bark:
   - björk
   - börk
   - wüf
+  - wh${'o'.repeat(3 + Math.ceil(Math.random()*8))}f
+  - whof
+  - whof
 bark?: ${this.t('bark')}?
 barkBark!: ${bark = this.t('bark')} ${bark} ${bark} ${bark}!
 dog:
