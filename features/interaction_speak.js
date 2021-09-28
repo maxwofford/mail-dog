@@ -16,7 +16,7 @@ module.exports = function(controller) {
         ...sent
     })
   }
-  controller.hears(/(?:\W|^)(?:speak|say|talk|walk|food|treat|björk|woof|bark)/, ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
+  controller.hears(/(?:\W|^)(?:speak|say|talk|walk|food|treat|björk|woof|bark)/i, ['mention','bot_message','direct_message','direct_mention'], async(bot, message) => {
     console.log('I heard master say something!')
     // await bot.reply(message, transcript('barkBark!'))
 
